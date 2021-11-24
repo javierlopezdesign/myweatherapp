@@ -60,8 +60,8 @@ function App() {
         temp_max: result.main.temp_max,
         city: result.name,
         country: result.sys.country,
-        sunrise: result.sys.sunrise,
-        sunset: result.sys.sunset,
+        sunrise: formatTime(result.sys.sunrise),
+        sunset: formatTime(result.sys.sunset),
         icon: result.weather[0].icon,
         detail:result.weather[0].main,
         description: result.weather[0].description
@@ -78,26 +78,28 @@ function App() {
   }
 
   const getForecastWeather = async () => {
-    await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=alerts&appid=54d617b95444482297980a914d839284&units=metric")
-    .then(res => res.json())
-    .then(result => {
-      setWeatherInfo({
-        temp: result.current.temp,
-        feels_like: result.current.feels_like,
-        temp_min: result.daily[0].temp.min,
-        temp_max: result.daily[0].temp.max,
-      //   city: result.name, from another call
-      //   country: result.sys.country,  from another call
-        sunrise: formatTime(result.current.sunrise),
-        sunset: formatTime(result.current.sunset),
-        icon: result.current.weather[0].icon,
-        detail:result.current.weather[0].main,
-        description: result.current.weather[0].description
-      }
-      )
-      setIcon("http://openweathermap.org/img/wn/" + weatherInfo.icon + "@2x.png");
-    }
-  )}
+    // await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=alerts&appid=54d617b95444482297980a914d839284&units=metric")
+    // .then(res => res.json())
+    // .then(result => {
+    //   setWeatherInfo({
+    //     temp: result.current.temp,
+    //     feels_like: result.current.feels_like,
+    //     temp_min: result.daily[0].temp.min,
+    //     temp_max: result.daily[0].temp.max,
+    //   //   city: result.name, from another call
+    //   //   country: result.sys.country,  from another call
+    //     sunrise: formatTime(result.current.sunrise),
+    //     sunset: formatTime(result.current.sunset),
+    //     icon: result.current.weather[0].icon,
+    //     detail:result.current.weather[0].main,
+    //     description: result.current.weather[0].description
+    //   }
+    //   )
+    //   setIcon("http://openweathermap.org/img/wn/" + weatherInfo.icon + "@2x.png");
+    // }
+    console.log("called forecast...")
+  // )
+}
 
 
 
@@ -110,12 +112,31 @@ function App() {
           <input type="text" onChange={cityInputHandler} value={cityInput}/>
         </div>
         <div className="weatherBox">
-          <button className="refreshButton" onClick={getForecastWeather}>
+          <button className="refreshButton" onClick={() => {
+                                getForecastWeather();
+                                getCurrentWeather();
+                              }
+                              }>
             <Icon className="refreshIcon" icon="eva:refresh-outline" />
           </button>
           <h2>city: {weatherInfo.city}, {weatherInfo.country} </h2>
           <h3>Date and Time</h3>
-          <div className="weatherInfo">
+          <div className="weatherInfoCurrent">
+            <h3>Today...</h3>
+            <img className="weatherIcon" src={icon} alt={weatherInfo.detail} />
+            <div className="weatherDetail">Detail: {weatherInfo.detail}</div>
+            {/* <div className="weatherDescription">Description: {weatherInfo.description}</div> */}
+
+            <div className="weatherTemp">Temp: {weatherInfo.temp}</div>
+            <div className="weatherFeel">Temp_like: {weatherInfo.feels_like}</div>
+            <div className="weatherTemp">Temp Min: {weatherInfo.temp_min}</div>
+            <div className="weatherTemp">Temp Max: {weatherInfo.temp_max}</div>
+            <div className="weatherSunrise">Temp Sunrise: {weatherInfo.sunrise}</div>
+            <div className="weatherSunset">Temp Sunset: {weatherInfo.sunset}</div>
+          
+          </div>
+          <div className="weatherInfoForecast">
+            <h3>Forecast</h3>
             <img className="weatherIcon" src={icon} alt={weatherInfo.detail} />
             <div className="weatherDetail">Detail: {weatherInfo.detail}</div>
             {/* <div className="weatherDescription">Description: {weatherInfo.description}</div> */}
