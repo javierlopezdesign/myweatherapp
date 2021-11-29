@@ -1,28 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap')
+    
 *, *:after, *:before
     margin: 0
     padding: 0
     box-sizing: border-box
 
-input
-    height: 2rem
-    margin-right: 1rem
+body
+    height: 100vh
+    background: linear-gradient(#19425e,#070e3a )
+    color: #ddd
+    font-family: 'Ubuntu', sans-serif
+    // font-weight: 300
 
-.refreshButton
-    background-color: transparent
-    outline: none
-    border: none
-    cursor: pointer
-    transition: transform 1s 
-    &:hover
-        transform:  rotate(360deg)
+h1
+    font-size: 3rem
 
-.refreshIcon
-    width: 2rem
-    height: 2rem
+h3
+    font-size: 0.8rem
+    font-weight: 300
+    color: #aaa
+
+p
+    font-weight: 300
 
 
-.weatherInfoCurrent
-    border: 2px solid purple
+.currentWeather
+    height: 100vh
+    width: 100%
 
-.weatherInfoForecast
-    border: 2px solid pink
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    padding-top: 5rem
+
+    .dayData
+        width: 90%
+
+    .weatherContainer
+        margin: 2rem 0 0.5rem 0
+        padding: 1rem
+        background-color: rgba(red,0.3)
+        
+        .currentWeatherIcon
+            font-size: 8rem
+        h2
+            color: #aaa
+            margin-top: 1rem
+            text-align: center
+
+
+    .tempBox
+        
+
+
+
+
+
+
+
+
+
+
+
+.footer
+    position: fixed
+    width: 100%
+    text-align: center
+    bottom: 0.5rem
+    margin: 0 auto
