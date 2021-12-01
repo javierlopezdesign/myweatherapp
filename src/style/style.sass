@@ -32,7 +32,7 @@ p
     flex-direction: column
     align-items: center
 
-    padding-top: 5rem
+    padding-top: 2rem
 
     .dayData
         width: 90%
@@ -40,7 +40,6 @@ p
     .weatherContainer
         margin: 2rem 0 0.5rem 0
         padding: 1rem
-        background-color: rgba(red,0.3)
         
         .currentWeatherIcon
             font-size: 8rem
@@ -51,10 +50,55 @@ p
 
 
     .tempBox
-        
+        position: relative
+        h1
+            font-size: 4rem
+      
+        span
+            font-size: 2rem
+            position: absolute
+            top: 0
+            right: -1.3rem
+
+        .feelsBox
+            display: flex
+            align-items: center
+            justify-content: center
+
+            .feelsIcon
+                font-size: 1.5rem
+                color: grey
+
+            h2
+                position: relative
+                margin-left: 0.5rem
+                color: grey
+                span
+                    font-size: 1rem
+                    position: absolute
+                    top: 0
+                    right: -0.8rem
 
 
 
+    .statsBox
+        width: 60%
+        margin-top: 1rem
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-template-rows: 1fr 1fr
+        place-items: center center
+        color: grey
+
+        .daytime, .minmaxtemp, .wind, .humidity
+            padding: 1rem
+            display: flex
+            flex-direction: column
+            justify-items: center
+            align-items: center
+            .statIcon
+                font-size: 2rem
+                margin-bottom: 0.5rem           
 
 
 

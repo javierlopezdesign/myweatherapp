@@ -3,8 +3,8 @@ import "../style/style.sass";
 import { Icon } from '@iconify/react';
 // import moment from "moment";
 
-const CurrentWeather = ({weatherInfo}) => {
-
+const CurrentWeather = ({currentWeatherInfo}) => {
+    // console.log(currentWeatherInfo)
 
     return(
         <>
@@ -25,40 +25,40 @@ const CurrentWeather = ({weatherInfo}) => {
           
 
                 <div className="dayData">
-                    <h1>Denny, Uk</h1>
+                    <h1>{currentWeatherInfo.city}, {currentWeatherInfo.country}</h1>
                     <h3>Tuesday, 23rd of November of 2021</h3>
                     <h3>Last update: 10:33</h3>
                     {/* <button>C</button> */}
                 </div>
                 <div className="weatherContainer">
-                    <Icon className="currentWeatherIcon"icon="wi:night-cloudy-windy" />
-                    <h2>Cloudy</h2>
+                    <Icon className="currentWeatherIcon" icon="wi:night-cloudy-windy" />
+                    <h2>{currentWeatherInfo.detail}</h2>
                 </div>
                 <div className="tempBox">
-                    <h1>15`</h1>
+                    <h1>{currentWeatherInfo.temp}<span>o</span></h1>
                     <div className="feelsBox">
-                        icon
-                        <h2>9`</h2>
+                        <Icon className="feelsIcon" icon="carbon:temperature-feels-like" />
+                        <h2>{currentWeatherInfo.feels_like}<span>o</span></h2>
                     </div>
                 </div>
                 <div className="statsBox">
                     <div className="daytime">
-                        icon
-                        <p>08:18</p>
-                        <p>18:18</p>
+                        <Icon className="statIcon" icon="mi:sunrise-alt" />
+                        <p>{currentWeatherInfo.sunrise}</p>
+                        <p>{currentWeatherInfo.sunset}</p>
                     </div>    
                     <div className="minmaxtemp">
-                        icon
-                        <p>min: -2</p>
-                        <p>max: 4</p>
+                        <Icon className="statIcon" icon="fluent:temperature-24-filled" />
+                        <p>min: {currentWeatherInfo.temp_min}</p>
+                        <p>max: {currentWeatherInfo.temp_max}</p>
                     </div>
                     <div className="wind">
-                        icon
-                        <p>15 km/h</p>
+                        <Icon className="statIcon" icon="lucide:wind" />
+                        <p>{currentWeatherInfo.wind} km/h</p>
                     </div>
                     <div className="humidity">
-                        icon
-                        <p>85%</p>
+                        <Icon className="statIcon" icon="ic:outline-water-drop" />
+                        <p>{currentWeatherInfo.humidity}%</p>
                     </div>
                 </div>    
             </div>
