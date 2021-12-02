@@ -23,70 +23,117 @@ function App() {
         humidity: undefined,
         icon: undefined,
         detail: undefined,
-        description: undefined
-      });
+        description: undefined,
+        time_requested: undefined
 
-    const getCurrentWeather = async () => {
+      });
+      const [forecastInfo,setForecastInfo] = useState({
+        temp_min: undefined,
+        temp_max: undefined,
+        sunrise: undefined,
+        sunset: undefined,
+        icon: undefined,
+        detail: undefined,
+    });
+
+    const getCurrentWeather = async (lat,lon) => {
         try{
-          // await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=54d617b95444482297980a914d839284&units=metric`)
+            if(lon.length !== 0){
     
-          await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Denny,uk&appid=54d617b95444482297980a914d839284&units=metric`)
-          .then(res => res.json())
-          .then(result => {
-            setCurrentWeatherInfo({
-              temp: result.main.temp,
-              feels_like: result.main.feels_like,
-              temp_min: result.main.temp_min,
-              temp_max: result.main.temp_max,
-              city: result.name,
-              country: result.sys.country,
-              sunrise: formatTime(result.sys.sunrise),
-              sunset: formatTime(result.sys.sunset),
-              humidity:result.main.humidity,
-              wind: result.wind.speed,
-              icon: `http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`,
-              detail:result.weather[0].main,
-              description: result.weather[0].description
-            })
-            // console.log(result);
-            
-            setLat(result.coord.lat)
-            setLon(result.coord.lon)
-    
-          },)
+    // This is the One call, once I have the UI ready change the fetch API to get forecast.
+                //       await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&exclude=minutely&appid=54d617b95444482297980a914d839284&units=metric")
+
+                await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=54d617b95444482297980a914d839284&units=metric`)
+                    .then(res => res.json())
+                    .then(result => {
+                        setCurrentWeatherInfo({
+                        temp: round(result.main.temp,1),
+                        feels_like: round(result.main.feels_like,1),
+                        temp_min: round(result.main.temp_min,1),
+                        temp_max: round(result.main.temp_max,1),
+                        city: result.name,
+                        country: result.sys.country,
+                        sunrise: formatTime(result.sys.sunrise),
+                        sunset: formatTime(result.sys.sunset),
+                        humidity:result.main.humidity,
+                        wind: round(result.wind.speed,1),
+                        icon: `http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`,
+                        detail:result.weather[0].main,
+                        description: result.weather[0].description,
+                        time_requested: formatTime(result.dt)
+                    })
+                    console.log(result)
+                
+                // getForecastWeather(result.coord.lat,result.coord.lon);
+                
+                // setLat(result.coord.lat)
+                // setLon(result.coord.lon)
+                // console.log(`Set lat: ${result.coord.lat} and lon: ${result.coord.lon}`)
+            },)
+        }
         }catch (error) {
-          console.log(error);
+            console.log(error);
         }
     }
+
+    // const getForecastWeather = async (latitude,longitude) => {
+    
+    //       await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&exclude=minutely&appid=54d617b95444482297980a914d839284&units=metric")
+    //       .then(res => res.json())
+    //       .then(result => {
+    //     //     setForecastInfo({
+    //     //       temp_min: round(result.daily[0].temp.min,1),
+    //     //       temp_max: round(result.daily[0].temp.max,1),
+    //     //       sunrise: formatTime(result.daily[0].sunrise),
+    //     //       sunset: formatTime(result.daily[0].sunset),
+    //     //       icon: result.daily[0].weather[0].icon,
+    //     //       detail: result.daily[0].weather[0].main,
+    //     //     })
+    //     //     console.log(result)
+    //       })
+    // }
+
 
     const formatTime = (timestamp) => {
         return new moment(timestamp*1000).format('HH:mm')
     }
+    function round(value, precision) {
+        var multiplier = Math.pow(10, precision || 0);
+        return Math.round(value * multiplier) / multiplier;
+    }
 
   // each time browser rerender will get lat and lon again.
-  useEffect(() => {
-    //   return new Promise((req, rej) => {
-    //     navigator.geolocation.getCurrentPosition((position) => {
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition((position) => {
             // console.log(position);
-            // setLat(position.coords.latitude);
-            // setLon(position.coords.longitude);
-    //     })
-        getCurrentWeather();
+          setLat(position.coords.latitude);
+          setLon(position.coords.longitude);
+        })    
+        // getCurrentWeather();
     },[]);
+
+    useEffect(()=>{
+        // console.log(lon)
+        getCurrentWeather(lat,lon);
+        // getForecastWeather(lat,lon)
+    },[lat,lon])
+
+
     return(
-        <div className="App">
-            <CurrentWeather 
-                currentWeatherInfo={currentWeatherInfo}
-                
-            />
+        <>
+            <div className="App">
+                <div className="container">
 
+                <CurrentWeather 
+                    currentWeatherInfo={currentWeatherInfo}
+                    lat={lat}
+                    lon={lon}
+                    
+                    />
+                    </div>
+            </div>
             <Footer />
-
-
-
-
-        </div>
-
+        </>
     );
 }
 export default App;

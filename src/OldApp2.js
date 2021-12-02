@@ -69,7 +69,8 @@ function App() {
     try{
       // await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=54d617b95444482297980a914d839284&units=metric`)
 
-      await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Denny,uk&appid=54d617b95444482297980a914d839284&units=metric`)
+      // await fetch(`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=54d617b95444482297980a914d839284&units=metric`)
+      lat={lat}&lon={lon}
       .then(res => res.json())
       .then(result => {
         setWeatherInfo({
