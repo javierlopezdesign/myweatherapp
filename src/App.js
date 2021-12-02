@@ -105,17 +105,14 @@ function App() {
   // each time browser rerender will get lat and lon again.
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
-            // console.log(position);
           setLat(position.coords.latitude);
           setLon(position.coords.longitude);
+          getCurrentWeather(position.coords.latitude,position.coords.longitude);
         })    
-        // getCurrentWeather();
     },[]);
 
     useEffect(()=>{
-        // console.log(lon)
         getCurrentWeather(lat,lon);
-        // getForecastWeather(lat,lon)
     },[lat,lon])
 
 
@@ -123,14 +120,13 @@ function App() {
         <>
             <div className="App">
                 <div className="container">
-
-                <CurrentWeather 
-                    currentWeatherInfo={currentWeatherInfo}
-                    lat={lat}
-                    lon={lon}
-                    
+                    <CurrentWeather 
+                        currentWeatherInfo={currentWeatherInfo}
+                        lat={lat}
+                        lon={lon}
+                        
                     />
-                    </div>
+                </div>
             </div>
             <Footer />
         </>
