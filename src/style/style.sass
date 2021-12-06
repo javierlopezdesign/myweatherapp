@@ -172,14 +172,14 @@ p
             margin-top: 0
 
         .daytime, .minmaxtemp, .wind, .humidity
-            padding: 1rem
+            padding: 0.5rem
             display: flex
             flex-direction: column
             justify-items: center
             align-items: center
             @media screen and (orientation: landscape)
                 padding: 0.5rem
-                
+
             .statIcon
                 font-size: 2rem
                 margin-bottom: 0.5rem           
@@ -189,7 +189,12 @@ p
 
 
 
+.loadingNotification
+    background-color: red
+    padding: 2rem
 
+.isLoading
+    background-color: yellow
 
 .footer
     position: fixed
@@ -198,9 +203,12 @@ p
     text-align: center
     bottom: 0
     margin: 0 auto
-    padding: 4rem 0 1rem 0
+    padding: 4rem 0 0.5rem 0
     background: linear-gradient(#00000000,#181818c0,#181818 )
 
+    p
+        font-size: 0.8rem
+        margin: 0.5rem
     a
         text-decoration: none
         color: $priColor

@@ -3,11 +3,11 @@ import "../style/style.sass";
 import { Icon } from '@iconify/react';
 // import moment from "moment";
 
-const CurrentWeather = ({currentWeatherInfo, lat, lon}) => {
+const CurrentWeather = ({currentWeatherInfo, lat, lon, isLoading}) => {
     // console.log(currentWeatherInfo)
 
     return(
-        <div className="currentWeatherContainer">
+        <div className={(isLoading === true) ? "currentWeatherContainer isLoading" : "currentWeatherContainer"}>
 
             <div className="dayData">
                 <h1>{currentWeatherInfo.city}, {currentWeatherInfo.country}</h1>
