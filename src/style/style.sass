@@ -18,39 +18,12 @@ $priColor: orange
 
 body
     height: 100vh
-    background: url("https://images.unsplash.com/photo-1503435824048-a799a3a84bf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80")
-    background-repeat: none
-    background-size: cover
-    background-origin: center
-    // background: linear-gradient(#19425e,#070e3a )
+    width: 100vw
     color: #e6e6e6
     font-family: 'Ubuntu', sans-serif
-    // font-weight: 300
-    // overflow: hidden
-
     
-.App
-    width: 100%
-    height: 100%
-    @include centerContent
-    justify-content: center
-    
-
-    .container
-        position: absolute
-        top: 50%
-        transform: translateY(-50%)
-        width: 100%
-        max-width: 450px
-    
-        @media screen and ( orientation: landscape )
-            // background-color: red
-            height: 90vh
-            max-width: 100%
-            width: 90%
-
 h1
-    font-size: 2.5rem
+    font-size: 2rem
 
 h3
     font-size: 0.8rem
@@ -60,141 +33,225 @@ h3
 p
     font-weight: 300
 
-.currentWeatherContainer
-    width: 80%
-    height: 100%
-    max-width: 450px
-    padding: 0.5rem
-    margin: 0 auto
-    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 53%, rgba(0,0,0,0.4) 100%)
-    border-radius: 5px
-    box-shadow: 0 8px 32px 0 #2222224d
-
-    backdrop-filter: blur( 4px )
-    -webkit-backdrop-filter: blur( 4px )
-    border: 1px solid rgba( 255, 255, 255, 0.2 )
+.App
+    @include centerContent
+    justify-content: center
+    width: 100%
+    height: 100vh
     
-    @media screen and ( orientation: landscape )
+    background: url("https://images.unsplash.com/photo-1503435824048-a799a3a84bf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80")
+    background-repeat: none
+    background-size: cover
+    background-origin: center
+
+    .weather_container
+        // @include centerContent
+        width: 80%
+        max-width: 420px
+        padding: 1rem
+        position: absolute
+        // justify-content: center
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
         // background-color: red
-        height: 90vh
+        background: linear-gradient(135deg, #000000d0 0%, rgba(0,0,0,0.5) 53%, #00000088 100%)
+        border-radius: 5px
+        box-shadow: 0 8px 32px 0 #2222224d
+        backdrop-filter: blur( 6px )
+        -webkit-backdrop-filter: blur( 6px )
+        border: 1px solid rgba( 255, 255, 255, 0.2 )
+    //     @media screen and ( orientation: landscape )
+    //         // background-color: red
+    //         height: 90vh
+    //         max-width: 100%
+    //         width: 90%
+
+    .LocationBox
+        margin: 1rem 0 2rem 0
+        
+
+.currentWeatherContainer
+    display: flex
+    flex-direction: row
+    
+    
+    .currentWeatherIconBox, .tempBox
+        @include centerContent
+        justify-content: center
         width: 100%
-        max-width: 780px
+
+        .currentWeatherDetail
+            font-weight: 500
+            font-size: 1rem
+
+        .currentWeatherIcon
+            // font-size: 6rem
+    
+        .currentWeatherTemp
+            font-size: 2rem
+
+        .feelsBox
+            display: flex
+            align-items: center
+            color: $fontSecColor
+
+            .feelsIcon
+                margin: 0 0.5rem
+                font-size: 1.25rem
+
+            h2
+                font-size: 1.25rem
+
+.statsContainer
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 1fr 1fr
+    margin-top: 1rem
+    margin: 1rem auto
+    width: 80%
+    color: $fontSecColor
+
+    .statsBox
+        @include centerContent
+        justify-content: center
+        padding: 0.5rem 1rem
+
+        .statIcon
+            font-size: 1.5rem
+
+
+.forecastContainer
+    width: 90%
+    margin: 1rem auto
+    display: flex
+    justify-content: space-between
+
+    .forecastBox
+        @include centerContent
+        font-size: 0.8rem
+        
+
+
+
+
+
+
+
+
+    // @media screen and ( orientation: landscape )
+    //     // background-color: red
+    //     height: 90vh
+    //     width: 100%
+    //     max-width: 780px
         
 
 .dayData
-    width: 100%
-    padding: 2rem 0.5rem 0 0.5rem
-    @media screen and (orientation: landscape)
-        padding: 1rem 0.5rem 0 0.5rem
+    // width: 100%
+    // padding: 2rem 0.5rem 0 0.5rem
+    // @media screen and (orientation: landscape)
+    //     padding: 1rem 0.5rem 0 0.5rem
 
 
 
 .currentWeather
-    @include centerContent
+    // @include centerContent
 
     // height: 100vh
-    width: 100%
-    @media screen and (orientation: landscape)
-        flex-direction: row
+    // width: 100%
+    // @media screen and (orientation: landscape)
+    //     flex-direction: row
 
     
     .weatherContainer
-        margin: 2rem 0 0.5rem 0
-        padding: 0 1rem
-        display: flex
-        width: 100%
-        @media screen and (orientation: landscape)
-            width: 50%
-            margin: 0 auto
+        // margin: 2rem 0 0.5rem 0
+        // padding: 0 1rem
+        // display: flex
+        // width: 100%
+        // @media screen and (orientation: landscape)
+        //     width: 50%
+        //     margin: 0 auto
 
 
 
         // justify-content: space-around
-        .currentWeatherIconBox
-            @include centerContent
-            width: 100%
-            display: flex
-
-            .currentWeatherIcon
-                font-size: 6rem
-        
             h2
-                color: $fontSecColor
-                margin-top: 1rem
-                text-align: center
+                // color: $fontSecColor
+                // margin-top: 1rem
+                // text-align: center
 
         .tempBox
-            @include centerContent
-            width: 100%
-            justify-content: center
+            // @include centerContent
+            // width: 100%
+            // justify-content: center
 
             h1
-                font-size: 3.5rem
-                color: $fontPriColor
-                position: relative 
+                // font-size: 3.5rem
+                // color: $fontPriColor
+                // position: relative 
         
             span
-                font-size: 2rem
-                position: absolute
-                top: 0
-                right: -1.3rem
+                // font-size: 2rem
+                // position: absolute
+                // top: 0
+                // right: -1.3rem
 
             .feelsBox
-                display: flex
-                align-items: center
-                justify-content: center
+                // display: flex
+                // align-items: center
+                // justify-content: center
 
                 .feelsIcon
-                    font-size: 1.5rem
-                    color: grey
+                    // font-size: 1.5rem
+                    // color: grey
 
                 h2
-                    position: relative
-                    margin-left: 0.5rem
-                    color: grey
+                    // position: relative
+                    // margin-left: 0.5rem
+                    // color: grey
                     span
-                        font-size: 1rem
-                        position: absolute
-                        top: 0
-                        right: -0.8rem
+                        // font-size: 1rem
+                        // position: absolute
+                        // top: 0
+                        // right: -0.8rem
 
 
 
-    .statsBox
-        width: 60%
-        margin-top: 1rem
-        display: grid
-        grid-template-columns: 1fr 1fr
-        grid-template-rows: 1fr 1fr
-        place-items: center center
-        color: $fontSecColor
-        @media screen and (orientation: landscape)
-            margin-top: 0
+//     .statsBox
+//         width: 60%
+//         margin-top: 1rem
+//         display: grid
+//         grid-template-columns: 1fr 1fr
+//         grid-template-rows: 1fr 1fr
+//         place-items: center center
+//         color: $fontSecColor
+//         @media screen and (orientation: landscape)
+//             margin-top: 0
 
-        .daytime, .minmaxtemp, .wind, .humidity
-            padding: 0.5rem
-            display: flex
-            flex-direction: column
-            justify-items: center
-            align-items: center
-            @media screen and (orientation: landscape)
-                padding: 0.5rem
+//         .daytime, .minmaxtemp, .wind, .humidity
+//             padding: 0.5rem
+//             display: flex
+//             flex-direction: column
+//             justify-items: center
+//             align-items: center
+//             @media screen and (orientation: landscape)
+//                 padding: 0.5rem
 
-            .statIcon
-                font-size: 2rem
-                margin-bottom: 0.5rem           
-
-
+//             .statIcon
+//                 font-size: 2rem
+//                 margin-bottom: 0.5rem           
 
 
 
 
-.loadingNotification
-    background-color: red
-    padding: 2rem
 
-.isLoading
-    background-color: yellow
+
+// .loadingNotification
+//     background-color: red
+//     padding: 2rem
+
+// .isLoading
+//     background-color: yellow
 
 .footer
     position: fixed
